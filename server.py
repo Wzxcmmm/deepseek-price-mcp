@@ -5,6 +5,19 @@ import os
 
 mcp = FastMCP("DeepSeek Price Assistant")
 TZ = ZoneInfo("Asia/Shanghai")
+def now_bj():
+    return datetime.now(TZ)
+
+@mcp.tool()
+def deepseek_clock_now() -> str:
+    """获取服务器当前北京时间，精确到秒。"""
+    now = now_bj()
+    return (
+        f"当前北京时间：{now:%Y-%m-%d %H:%M:%S}\n"
+        f"星期：{['周一','周二','周三','周四','周五','周六','周日'][now.weekday()]}\n"
+        f"UTC偏移：{now.strftime('%z')}\n"
+        f"Unix时间戳：{int(now.timestamp())}"
+    )
 
 PRICES = {
     "cache_hit_input": {"peak": 0.04, "off_peak": 0.02},
