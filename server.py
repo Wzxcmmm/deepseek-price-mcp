@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 import os
 
 mcp = FastMCP("DeepSeek Price Assistant")
